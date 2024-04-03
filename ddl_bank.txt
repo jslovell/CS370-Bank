@@ -1,0 +1,13 @@
+#Creating a new table
+CREATE TABLE user_info (
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255) NOT NULL
+);
+
+# Inserting data into the new table
+INSERT INTO user_info (username, password) VALUES 
+('alice', 'pass1'),
+('bob', 'pass2'),
+('charlie', 'pass3'),
+('david', 'pass4'),
+('eve', 'pass5');
