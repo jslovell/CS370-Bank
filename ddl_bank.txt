@@ -1,8 +1,47 @@
 #Creating a new table
-CREATE TABLE user_info (
-    username VARCHAR(255) PRIMARY KEY,
-    password VARCHAR(255) NOT NULL
+CREATE TABLE User (
+	Username	varchar(20) NOT NULL,
+	Password		varchar(20),
+	FirstName	varchar(20),
+	MiddleInitial	char(1),
+	LastName	varchar(20),
+	Email		varchar(50),
+	PhoneNum	varchar(10),
+	StreetNum	varchar(10),
+	StreetName	varchar(20),
+	City		varchar(20),
+	PRIMARY KEY (username)
 );
+CREATE TABLE Account (
+	AccountID		varchar(10) NOT NULL,
+	AccountOwner	varchar(20),
+	AccountType		varchar(10),
+	Balance			numeric(11, 2),
+	PRIMARY KEY (AccountID),
+	FOREIGN KEY (AccountOwner) REFERENCES User(Username),
+	CHECK (AccountType=’savings’ OR AccountType=’checking’)
+);
+CREATE TABLE Transaction (
+	TransactionID	varchar(10) NOT NULL,
+	SendAccount		varchar(10),
+	RecAccount		varchar(10),
+	Amount			numeric(11, 2),
+	Timestamp		datetime,
+	PRIMARY KEY (AccountID),
+	FOREIGN KEY (SendAccount) REFERENCES Account(AccountID),
+	FOREIGN KEY (RecAccount) REFERENCES Account(AccountID)
+);
+CREATE TABLE Ticket (
+	TicketID	varchar(10) NOT NULL,
+	TicketOwner	varchar(20),
+	Priority	tinyint,
+	Description	varchar(100),
+	Timestamp	datetime,
+	PRIMARY KEY (TicketID),
+	FOREIGN KEY (TicketOwner) REFERENCES User(Username),
+	CHECK (Priority>0 AND Priority<=3)
+);
+
 
 # Inserting data into the new table
 INSERT INTO user_info (username, password) VALUES 
