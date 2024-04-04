@@ -3,7 +3,6 @@
 <?php
 	require_once('db.php');
   require_once('functions.php');
-  $result = display_data();
 ?>
 <html>
 <head>
@@ -16,57 +15,17 @@ table, th, td {
 }
 </style>
 <body>
-
   <div id="frm">
-    <form method="post">
-
+    <form autocomplete="off" method="post" action="login.php">
+      <h1>Login</h1>
       <p>
-      <center><H1>Sql injcetion test!
-      </center>
-
-      </p>
-      <p>
-      <center>
-      <label>User Name</label>
-        <input type="text" name="user" id="user">
-
-
-
-      <label>Password</label>
-        <input type="text" name="pass" id="pass">
-
-      </center>
-      </p>
-      <center>
+        <label>Username</label>
+        <input type="text" name="user" id="user" />
+        <label>Password</label>
+        <input type="text" name="pass" id="pass" />
         <input type="submit" id="btn" value="Login"/>
-
-      </center>
+      </p>
     </form>
   </div>
-
-	<div id="table">
-	<table>
-		<tr>
-			<td>Username</td>
-			<td>Password</td>
-			<td>FirstName</td>
-			<td>MiddleInitial</td>
-			<td>LastName</td>
-		</tr>
-		<tr>
-		<?php
-			while ($row = mysqli_fetch_assoc($result)) {
-		?>
-			<td><?php echo $row['Username']; ?></td>
-			<td><?php echo $row['Password']; ?></td>
-			<td><?php echo $row['FirstName']; ?></td>
-			<td><?php echo $row['MiddleInitial']; ?></td>
-			<td><?php echo $row['LastName']; ?></td>
-		</tr>
-		<?php
-		}
-		?>
-	</table>
-	</div>
 </body>
 </html>
