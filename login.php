@@ -10,7 +10,7 @@ $password = stripcslashes($password);
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-$stmt = $conn->prepare("SELECT Username, Password FROM User WHERE Username=? and Password=?");
+$stmt = $conn->prepare("SELECT username, password FROM client WHERE username=? and password=?");
 $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
 $stmt->bind_result($username, $password);

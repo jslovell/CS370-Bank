@@ -311,7 +311,7 @@ INSERT INTO account (account_id, account_owner, account_type, balance) VALUES
 ('1000000165', 'cbruce', 'savings', '702.14'),
 ('1000000166', 'upatrick', 'savings', '8823.37'),
 ('1000000167', 'upatrick', 'checking', '1595.79');
-INSERT INTO transaction (transaction_id, send_account, recieve_account, amount, timestamp) VALUES
+INSERT INTO transaction (transaction_id, send_account, rec_account, amount, timestamp) VALUES
 ('1000000001', '1000000082', '1000000127', '58.00', '2024-1-1 6:00:00'),
 ('1000000002', '1000000136', '1000000001', '528.00', '2024-1-2 11:00:00'),
 ('1000000003', '1000000088', '1000000033', '860.00', '2024-1-3 7:00:00'),
