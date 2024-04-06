@@ -4,8 +4,13 @@
     session_start();
     require_once('includes/db.php');
     require_once('includes/functions.php');
+    if (!isset($_SESSION['user'])) header('Location: index.php');
     $user = $_SESSION['user'];
     $accounts = getAccounts($user);
+    if(isset($_POST['logout'])) {
+        session_destroy();
+        header('Location: index.php');
+    }
 ?>
 <html>
 <head>
@@ -35,5 +40,9 @@
             ?>
         </table>
     </div>
+    <br>
+    <form method="post">
+        <input type="submit" name="logout" value="Logout" />
+    </form>
 </body>
 </html>
