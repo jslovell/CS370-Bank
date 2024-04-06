@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.php';
 
 // Grab User submitted information
@@ -17,8 +18,11 @@ $stmt->bind_result($username, $password);
 $stmt->store_result();
 
 if ($stmt->num_rows == 1 && $stmt->fetch()) {
-	header("Location: client.php?user=".$username);
+	$_SESSION['user'] = $username;
+	$_SESSION['loginError'] = false;
+	header('Location: ../client.php');
 } else {
-	echo 'failure';
+	$_SESSION['loginError'] = true;
+	header('Location: ../index.php');
 }
 ?>
