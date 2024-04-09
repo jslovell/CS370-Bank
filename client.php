@@ -47,6 +47,8 @@
         <input type="submit" name="logout" value="Logout" />
     </form>
     <br>
+    <a href="history.php">Transaction History</a>
+    <br>
     <div id="frm">
         <form autocomplete="off" method="post" action="includes/transfer.php">
             <p>
