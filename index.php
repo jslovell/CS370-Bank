@@ -23,7 +23,7 @@
                 <input type="submit" id="btn" value="Login"/>
             </p>
         </form>
-        <?php if ($_SESSION['loginError'] == true) { ?>
+        <?php if ($_SESSION['loginError']) { ?>
             <p style='color: red;'>Incorrect Username/Password!</p>
         <?php } ?>
     </div>
