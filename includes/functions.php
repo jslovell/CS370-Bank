@@ -22,6 +22,13 @@
         return $result;
     }
 
+    function getOneTransaction($id) {
+        global $conn;
+        $query= "SELECT send_account, rec_account, amount, timestamp FROM transaction WHERE transaction_id='".$id."'";
+        $result = mysqli_query($conn, $query);
+        return $result;
+    }
+
     function getClientInfo($user) {
         global $conn;
         $query = "SELECT f_name, l_name, email, phone_num, street_num, street, city FROM client WHERE username='".$user."'";

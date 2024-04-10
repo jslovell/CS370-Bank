@@ -5,11 +5,13 @@
     require_once('includes/db.php');
     require_once('includes/functions.php');
     if (!isset($_SESSION['user'])) header('Location: index.php');
-    if ($_SESSION['user'] != "admin") header('Location: client.php');
+    $user = $_SESSION['user'];
     if(isset($_GET['logout'])) {
         session_destroy();
         header('Location: index.php');
     }
+    if(!isset($_GET['id'])) $id = 0;
+    else $id = $_GET['id'];
 ?>
 <html>
 <head>
@@ -18,10 +20,16 @@
 <title>Very Legitimate Bank Inc.</title>
 </head>
 <body>
-    <h1>Admin Control Panel</h1>
-    <br>
+    <h1>Transfer Confirmation</h1>
     <div class="nav">
+        <a href="client.php">Home</a>
         <a href="?logout=true">Logout</a>
+    </div>
+    <div class="frm" style="text-align: center">
+        <p style="color: green">SUCCESS</p>
+        <p>
+            <?php echo mysqli_fetch_assoc(getOneTransaction($id))['send_account'] ?> -> $<?php echo mysqli_fetch_assoc(getOneTransaction($id))['amount'] ?> -> <?php echo mysqli_fetch_assoc(getOneTransaction($id))['rec_account'] ?>
+        </p>
     </div>
 </body>
 </html>

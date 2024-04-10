@@ -7,7 +7,7 @@
     if (!isset($_SESSION['user'])) header('Location: index.php');
     $user = $_SESSION['user'];
     $transactions = getTransactions($user);
-    if(isset($_POST['logout'])) {
+    if(isset($_GET['logout'])) {
         session_destroy();
         header('Location: index.php');
     }
@@ -20,7 +20,11 @@
 </head>
 <body>
     <h1>Transaction history for <?php echo mysqli_fetch_assoc(getClientInfo($user))['f_name'] ?></h1>
-    <div id="table">
+    <div class="nav">
+        <a href="client.php">Back</a>
+        <a href="?logout=true">Logout</a>
+    </div>
+    <div class="wrapper"><div class="table">
         <table>
             <tr>
                 <td>ID</td>
@@ -43,13 +47,6 @@
             }
             ?>
         </table>
-    </div>
-    <br>
-    <form method="post">
-        <input type="submit" name="logout" value="Logout" />
-    </form>
-    <br>
-    <a href="client.php">Back</a>
-    <br>
+    </div></div>
 </body>
 </html>

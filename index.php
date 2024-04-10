@@ -12,16 +12,15 @@
 <title>Very Legitimate Bank Inc.</title>
 </head>
 <body>
-    <div id="frm">
+    <h1>Very Legitimate Bank Inc.</h1>
+    <br>
+    <div class="frm">
         <form autocomplete="off" method="post" action="includes/login.php">
-            <h1>Very Legitimate Bank Inc.</h1>
-            <p>
-                <label>Username</label>
-                <input type="text" name="user" id="user" />
-                <label>Password</label>
-                <input type="text" name="pass" id="pass" />
-                <input type="submit" id="btn" value="Login"/>
-            </p>
+            <label>Username</label>
+            <input type="text" name="user" id="user" />
+            <label>Password</label>
+            <input type="text" name="pass" id="pass" />
+            <input type="submit" id="btn" value="Login"/>
         </form>
         <?php if ($_SESSION['loginError']) { ?>
             <p style='color: red;'>Incorrect Username/Password!</p>

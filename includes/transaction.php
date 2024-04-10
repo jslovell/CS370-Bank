@@ -18,6 +18,7 @@ $conn->autocommit(FALSE);
 
 // Initialize an array to store errors
 $errors = [];
+$hasNulls = false;
 
 //Validate inputs
 $sendBal = mysqli_fetch_assoc(mysqli_query($conn, "SELECT account_owner, account_type, balance FROM account WHERE account_id='".$send_ac."'"))['balance'];
@@ -33,6 +34,7 @@ $stmtB->bind_result($send_ac);
 $stmtB->store_result();
 if (!$stmtA->num_rows == 1 || !$stmtA->fetch() || !$stmtB->num_rows == 1 || !$stmtB->fetch() || $transfer <= 0 || $transfer > $sendBal) {
     array_push($errors, 'Invalid inputs');
+    $hasNulls = true;
 }
 
 // Update the balance of the debit account
@@ -52,14 +54,16 @@ if (!$stmt->execute()) {
 }
 
 // Insert transaction entry
-$transaction_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT transaction_id FROM transaction ORDER BY transaction_id DESC LIMIT 1;"))['transaction_id'];
-$transaction_id = (int)$transaction_id + 1;
-$date = date("Y-m-d h:i:s", strtotime("now"));
-$transfer_query = "INSERT INTO transaction VALUES (?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($transfer_query);
-$stmt->bind_param("sssds", $transaction_id, $send_ac, $rec_ac, $transfer, $date);
-if (!$stmt->execute()) {
-    array_push($errors, 'Transfer insert failed');
+if (!$hasNulls) {
+    $transaction_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT transaction_id FROM transaction ORDER BY transaction_id DESC LIMIT 1;"))['transaction_id'];
+    $transaction_id = (int)$transaction_id + 1;
+    $date = date("Y-m-d h:i:s", strtotime("now"));
+    $transfer_query = "INSERT INTO transaction VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($transfer_query);
+    $stmt->bind_param("sssds", $transaction_id, $send_ac, $rec_ac, $transfer, $date);
+    if (!$stmt->execute()) {
+        array_push($errors, 'Transfer insert failed');
+    }
 }
 
 // Check for errors and commit or rollback the transaction
@@ -67,15 +71,15 @@ if (!empty($errors)) {
     $conn->rollback();
     echo "Transaction Unsuccessful! Errors: " . implode(", ", $errors);
     $_SESSION['transferError'] = "ERROR";
-    $_SESSION['transferSuccess'] = false;
+    $conn->close();
+    echo " Transaction Finished";
+    header('Location: ../transfer.php');
 } else {
     $conn->commit();
     echo "Transaction Successful!";
     unset($_SESSION['transferError']);
-    $_SESSION['transferSuccess'] = true;
+    $conn->close();
+    echo " Transaction Finished";
+    header('Location: ../confirm.php?id='.$transaction_id);
 }
-
-$conn->close();
-echo " Transaction Finished";
-header('Location: ../client.php');
 ?>
