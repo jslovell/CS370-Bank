@@ -35,4 +35,9 @@
         $result = mysqli_query($conn, $query);
         return $result;
     }
+
+    
+    function valdiateSignUp($user) {
+        
+    }
 ?>

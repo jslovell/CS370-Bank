@@ -17,6 +17,7 @@ $stmt->execute();
 $stmt->bind_result($username, $password);
 $stmt->store_result();
 
+
 if ($stmt->num_rows == 1 && $stmt->fetch()) {
 	$_SESSION['user'] = $username;
 	$_SESSION['loginError'] = false;

@@ -21,6 +21,7 @@
 <body>
     <h1>Welcome, <?php echo mysqli_fetch_assoc(getClientInfo($user))['f_name'] ?></h1>
     <div class="nav">
+        <a href="personal-info.php">Info</a>
         <a href="history.php">History</a>
         <a href="transfer.php">Transfer</a>
         <a href="?logout=true">Logout</a>
