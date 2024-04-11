@@ -22,7 +22,7 @@
             <input type="text" name="user" id="user" />
             <label>Password</label>
             <input type="text" name="pass" id="pass" />
-            <input type="submit" id="btn" value="Login"/>
+            <input type="submit" id="btn" value="LOGIN"/>
 
 
         </form>
@@ -38,7 +38,7 @@
 
     <div id="content1" class="hidden">
     <div class="frm">
-        <form autocomplete="off" method="post" action="includes/registerClient.php">
+        <form autocomplete="off" method="post" action="includes/register-client.php">
             <label>Username</label>
             <input type="text" name="user" id="user" />
             <label>Password</label>
