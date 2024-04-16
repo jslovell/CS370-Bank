@@ -80,6 +80,7 @@ if (!empty($errors)) {
     unset($_SESSION['transferError']);
     $conn->close();
     echo " Transaction Finished";
-    header('Location: ../confirm.php?id='.$transaction_id);
+    $_SESSION['transaction'] = $transaction_id;
+    header('Location: ../confirm.php');
 }
 ?>

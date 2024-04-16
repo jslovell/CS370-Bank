@@ -10,8 +10,8 @@
         session_destroy();
         header('Location: index.php');
     }
-    if(!isset($_GET['id'])) $id = 0;
-    else $id = $_GET['id'];
+    if(!isset($_SESSION['transaction'])) $id = 0;
+    else $id = $_SESSION['transaction'];
 ?>
 <html>
 <head>
@@ -27,9 +27,9 @@
     </div>
     <div class="frm" style="text-align: center">
         <p style="color: green">SUCCESS</p>
-        <p>
-            <?php echo mysqli_fetch_assoc(getOneTransaction($id))['send_account'] ?> -> $<?php echo mysqli_fetch_assoc(getOneTransaction($id))['amount'] ?> -> <?php echo mysqli_fetch_assoc(getOneTransaction($id))['rec_account'] ?>
-        </p>
+        <p>To: <?php echo mysqli_fetch_assoc(getOneTransaction($id))['rec_account'] ?></p>
+        <p>From: <?php echo mysqli_fetch_assoc(getOneTransaction($id))['send_account'] ?></p>
+        <p>Amount: $<?php echo mysqli_fetch_assoc(getOneTransaction($id))['amount'] ?></p>
     </div>
 </body>
 </html>
