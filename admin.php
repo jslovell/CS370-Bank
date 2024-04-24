@@ -21,6 +21,12 @@
     <h1>Admin Control Panel</h1>
     <br>
     <div class="nav">
+        <a href="admin-stuffs/AllUsers.php">Clients</a>
+        <a href="?logout=true">Accounts</a>
+        <a href="admin-stuffs/Tickets.php">Tickets</a>
+        <a href="?logout=true">Transactions</a>
+
+        <a href="admin-stuffs/admin-validateClientUpdate.php">True Tickets?</a>
         <a href="?logout=true">Logout</a>
     </div>
 </body>

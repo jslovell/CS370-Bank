@@ -20,7 +20,7 @@
     <button id="toggleButton1">Toggle Element</button>
     <div id="content" class="hidden1">
     <div class="frm">
-        <form autocomplete="off" method="post" action="includes/registerClient.php">
+        <form autocomplete="off" method="post" action="includes/register-client.php">
             <label>Username</label>
             <input type="text" name="user" id="user" />
             <label>Password</label>
