@@ -4,7 +4,7 @@ session_start();
 require_once('../includes/functions.php');
 global $conn;
 
-// Handle the button click from AllUsers.php
+// Handle the button click
 if (isset($_GET['sort'])) {
     $sortColumn = $_GET['sort'];
 
@@ -15,7 +15,7 @@ if (isset($_GET['sort'])) {
     $result = $stmt->get_result();
 
     // Display the sorted data in the table
-    $asdw = 0; //This was used as in my Original Table aI had a row of Blank Enteries
+    $asdw = 0;
     if ($result->num_rows > 0) {
         echo "<tr><td>UsernameTHY <a onclick=\"sortTable('username')\">Username</a></td><td>F_NAME <a onclick=\"sortTable('f_name')\">f_name</a></td><td>L_NAME <a onclick=\"sortTable('l_name')\">l_name</a></td><td>EMAIL <a onclick=\"sortTable('email')\">email</a></td><td>PHONE_NUM <a onclick=\"sortTable('phone_num')\">phone_num</a></td><td>";
         while ($row = $result->fetch_assoc()) {
@@ -30,5 +30,6 @@ if (isset($_GET['sort'])) {
     } else {
         echo "0 results";
     }
+
 }
 ?>

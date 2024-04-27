@@ -28,9 +28,8 @@
         <a href="../admin.php">Back</a>
         <a href="?logout=true">Logout</a>
     </div>
-    
+
     <div class="wrapper"><div class="table">
-    <p>This is a reminder that the table sort isnt built for Filtering and Sorting Tickets</p>
         <table id="dataTable">
             <tr>
                 <?php echo "<td>Ticket_ID <a onclick=\"sortTable('username')\">Username</a></td><td>Ticket_Owner <a onclick=\"sortTable('ticket_owner')\">ticker_owner</a></td><td>Priority <a onclick=\"sortTable('priority')\">priority</a></td><td>Description <a onclick=\"sortTable('description')\">description</a></td><td>Timestamp <a onclick=\"sortTable('timestamp')\">Timestamp</a></td><td>";?>
@@ -39,19 +38,18 @@
                 <?php
                 while($row = mysqli_fetch_assoc($persInfo)) {
                 ?>
-                <?php echo "<tr><td> <a href=\"admin-validateClientUpdate.php?ticket=" . $row['ticket_id'] . "\">". $row['ticket_id'] ."</a></td><td>" . $row['ticket_owner'] . "</td><td>" . $row['priority'] . "</td><td>" . $row['description'] . "</td><td>" . $row['timestamp'] . "</td><td>";?>
-                <?php echo "<tr><td> <a href=\"../Ticket-Stuffs/handleTicketRequests.php?ticket=" . $row['ticket_id'] . "\">". $row['ticket_id'] ."CORRECT</a></td><td>" . $row['ticket_owner'] . "</td><td>" . $row['priority'] . "</td><td>" . $row['description'] . "</td><td>" . $row['timestamp'] . "</td><td>";?>
+                <?php echo "<tr><td> <a href=\"../Ticket-Stuffs/handleTicketRequests.php?ticket=" . $row['ticket_id'] . "\">". $row['ticket_id'] ."</a></td><td>" . $row['ticket_owner'] . "</td><td>" . $row['priority'] . "</td><td>" . $row['description'] . "</td><td>" . $row['timestamp'] . "</td><td>";?>
+                
 
             </tr>
             <?php
 }
             ?>
-            <?php echo "<a href=\"../Ticket-Stuffs/ticket-DeleteClient.php?ticket=10103\">THis is to test the delete Clause for a Ticket (MANUAL ENTRY!!!)</a>" ?>
-            <?php echo "<a href=\"../Ticket-Stuffs/handleTicketRequests.php?ticket=10101\">Main Handler</a>" ?>
+
         </table>
     </div></div>
 
-    
+
 
     <script>
         //Havent worked on sort functionality for Tickets

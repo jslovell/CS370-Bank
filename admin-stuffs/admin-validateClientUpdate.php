@@ -6,6 +6,7 @@
     require_once('../includes/functions.php');
     if (!isset($_SESSION['user'])) header('Location: ../index.php');
     $user = $_SESSION['user'];
+
     if(isset($_GET['logout'])) {
         session_destroy();
         header('Location: ../index.php');
@@ -60,7 +61,6 @@
             <input value= <?php echo mysqli_fetch_assoc(getTicketUpdate($theTicket))['street'] ?> type="text" name="street" id="street" />
             <label>City</label>
             <input value= <?php echo mysqli_fetch_assoc(getTicketUpdate($theTicket))['city'] ?> type="text" name="city" id="city" />
-            <a href= <?php echo "./validateClientUpdate.php?ticket=" .mysqli_fetch_assoc(getTicketUpdate($theTicket))['ticket_id'] ."" ?>>Test for going to ./validateClientUpdate.php?ticket=</a>
             <input type="submit" id="btn" value="Confirm Changes"/>
         </form>
         <br>

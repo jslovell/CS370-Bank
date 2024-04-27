@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once 'db.php'; //?
 $_SESSION['signUpError'] = false;
 // Grab User submitted information
 $username = $_POST['user'];

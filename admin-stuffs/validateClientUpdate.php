@@ -5,6 +5,7 @@ require_once '../includes/db.php';
 require_once('../includes/functions.php');
 if (!isset($_SESSION['user'])) header('Location: index.php');
 $user = $_SESSION['user'];
+
 if(isset($_GET['logout'])) {
     session_destroy();
     header('Location: index.php');
@@ -42,7 +43,6 @@ $street = stripcslashes($street);
 $city = stripcslashes($city);
 
 $oldUser = stripcslashes($oldUser);
-
 
 
 $username = mysqli_real_escape_string($conn, $username);

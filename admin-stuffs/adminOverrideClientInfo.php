@@ -6,10 +6,12 @@
     require_once('../includes/functions.php');
     if (!isset($_SESSION['user'])) header('Location: ../index.php');
     $user = $_SESSION['user'];
+
     if(isset($_GET['logout'])) {
         session_destroy();
         header('Location: ../index.php');
     }
+
 
     $theTempUser = "nsoto";
     $persInfo = getClientInfo($user);
@@ -90,12 +92,6 @@
             ?>
         </table>
     </div></div>
-
-    <div class="nav">
-        <a href="update-client-info.php">Update Information</a>
-        <a href="update-client-info.php">True Admin to Client Update Information</a>
-        <a href="../create-client.php">Create new Account</a>
-    </div>
 
 
 </body>

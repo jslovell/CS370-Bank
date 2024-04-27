@@ -10,13 +10,11 @@ if(isset($_GET['logout'])) {
     header('Location: index.php');
 }
 
-
 //Acquiring the ticket_id from ?
 $theTicket;
 $theTicket = $_GET['ticket'];
 echo $theTicket;
 $theClientInfo = getOneTicket($theTicket);
-
 
 //Getting the username of whom requested this ticket
 $theClient = mysqli_fetch_assoc(mysqli_query($conn, "SELECT ticket_owner FROM ticket WHERE ticket.ticket_id='".$theTicket."'"))['ticket_owner'];
@@ -27,7 +25,6 @@ $_SESSION['signUpError'] = false;
 
 
 
-//$stmt = $conn->prepare("UPDATE client SET username=?, password=?, f_name=?, l_name=?, email=?, phone_num=?, street_num=?, street=?, city=? WHERE client.username=?");
 $stmt = $conn->prepare("DELETE FROM client WHERE client.username=?");
 if ($stmt === false) {
     die('Error: ' . $conn->error); // Handle prepare error

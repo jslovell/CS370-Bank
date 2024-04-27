@@ -81,4 +81,11 @@
         $result = mysqli_query($conn, $query);
         return $result;
     }
+
+    function getAccountTicket($ticketID) {
+        global $conn;
+        $query = "SELECT ticket_id, account_owner, account_type, balance FROM alteredaccount WHERE ticket_id ='".$ticketID."'";
+        $result = mysqli_query($conn, $query);
+        return $result;
+    }
 ?>

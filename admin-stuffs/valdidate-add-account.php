@@ -2,8 +2,6 @@
 session_start();
 require_once '../includes/db.php';
 
-//////////////////////////////////////////////////THIS IS CURRENTLY A WIP AS OF 4-24-24
-
 require_once('../includes/functions.php');
 if (!isset($_SESSION['user'])) header('Location: index.php');
 $user = $_SESSION['user'];
@@ -15,59 +13,29 @@ if(isset($_GET['logout'])) {
 //Getting Ticket ID from ? in URL
 $theTicket;
 $theTicket = $_GET['ticket'];
-$theClient = getTicketUpdate($theTicket);
+$theClient = getAccountTicket($theTicket);
 
 
 $_SESSION['signUpError'] = false;
-// Grab User submitted information
-$username = $_POST['user'];
-$password = $_POST['pass'];
-$firstname = $_POST['fname'];
-$lastname = $_POST['lname'];
-$emailer = $_POST['emailer'];
-$phonenumber = $_POST['pnum'];
-$streetnumber = $_POST['streetnum'];
-$street = $_POST['street'];
-$city = $_POST['city'];
-
-$oldUser = $_POST['oldUser'];
-
-
-$username = stripcslashes($username);
-$password = stripcslashes($password);
-$firstname = stripcslashes($firstname);
-$lastname = stripcslashes($lastname);
-$emailer = stripcslashes($emailer);
-$phonenumber = stripcslashes($phonenumber);
-$streetnumber = stripcslashes($streetnumber);
-$street = stripcslashes($street);
-$city = stripcslashes($city);
-
-$oldUser = stripcslashes($oldUser);
 
 
 
-$username = mysqli_real_escape_string($conn, $username);
-$password = mysqli_real_escape_string($conn, $password);
-$firstname = mysqli_real_escape_string($conn, $firstname);
-$lastname = mysqli_real_escape_string($conn, $lastname);
-$emailer = mysqli_real_escape_string($conn, $emailer);
-$phonenumber = mysqli_real_escape_string($conn, $phonenumber);
-$streetnumber = mysqli_real_escape_string($conn, $streetnumber);
-$street = mysqli_real_escape_string($conn, $street);
-$city = mysqli_real_escape_string($conn, $city);
+//This is gathing the Information from the ticket & the account details to add
+$acct_owner = mysqli_fetch_assoc(mysqli_query($conn, "SELECT ticket_id, account_owner, account_type, balance FROM alteredaccount WHERE ticket_id ='".$theTicket."'"))['account_owner'];
+$acct_type =mysqli_fetch_assoc(mysqli_query($conn, "SELECT ticket_id, account_owner, account_type, balance FROM alteredaccount WHERE ticket_id ='".$theTicket."'"))['account_type'];
+$bal =mysqli_fetch_assoc(mysqli_query($conn, "SELECT ticket_id, account_owner, account_type, balance FROM alteredaccount WHERE ticket_id ='".$theTicket."'"))['balance'];
 
-$oldUser = mysqli_real_escape_string($conn, $oldUser);
+$latestAccount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT account_id from lastestaccount"))['account_id'];
+$latestAccount = (int)$latestAccount + 1;
 
 
 //Executing the Admin Priveledge to Update Account Info
-//OML ITS UPDATING CLIENT AND NOT ACCOUNTS --> THIS WAS WHAT WAS CAUSING THE ERRORS YESTERDAY!!!!!!!!!!!!!
-$stmt = $conn->prepare("UPDATE client SET username=?, password=?, f_name=?, l_name=?, email=?, phone_num=?, street_num=?, street=?, city=? WHERE client.username=?");
+$stmt = $conn->prepare("INSERT INTO account (account_id, account_owner, account_type, balance) VALUES (?, ?, ?, ?)");
 if ($stmt === false) {
     die('Error: ' . $conn->error); // Handle prepare error
 }
 
-$stmt->bind_param("ssssssssss", $username, $password, $firstname, $lastname, $emailer, $phonenumber, $streetnumber, $street, $city, $oldUser);
+$stmt->bind_param("sssd", $latestAccount, $acct_owner, $acct_type, $bal);
 if ($stmt === false) {
     die('Error: ' . $stmt->error); // Handle bind_param error
 }
@@ -81,7 +49,7 @@ if ($stmt->execute()) {
 
 
 ///The section Below Handles with the deletion of Tickets (This query takes the ticket request from alteredUser & deletes it as its reqest has been fufilled)
-$stmt = $conn->prepare("DELETE FROM altereduser WHERE ticket_id= ?");
+$stmt = $conn->prepare("DELETE FROM alteredaccount WHERE ticket_id= ?");
 $stmt->bind_param("s", $theTicket);
 if ($stmt->execute()) {
     echo "Record updated successfully";
@@ -89,7 +57,7 @@ if ($stmt->execute()) {
     echo "Error updating record: " . $stmt->error;
 }
 
-///The section Below Handles with the deletion of Tickets
+
 $stmt = $conn->prepare("DELETE FROM ticket WHERE ticket.ticket_id = ?");
 $stmt->bind_param("s", $theTicket);
 if ($stmt->execute()) {

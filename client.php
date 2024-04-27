@@ -47,7 +47,11 @@
             }
             ?>
         </table>
-        <a href="add-client-account.php">Add Account?</a>
     </div></div>
+
+    <div class="nav">
+        <a href="add-client-account.php">Add Account?</a>
+        <a href="delete-client-account.php">Delete Accounts?</a>
+    </div>
 </body>
 </html>

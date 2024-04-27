@@ -19,21 +19,27 @@
 <title>Very Legitimate Bank Inc.</title>
 </head>
 <body>
-    <h1>What type of account do you want to add?</h1>
+    <h1>Account deletion for: <?php echo mysqli_fetch_assoc(getClientInfo($user))['f_name'] ?></h1>
     <div class="nav">
         <a href="client.php">Back</a>
         <a href="?logout=true">Logout</a>
     </div>
     <div class="frm">
-        <form autocomplete="off" method="post" action="includes/add-account.php">
-            <label>Account Type</label>
-            <input type="text" name="send" id="send" />
-
-            <label>Initial Balance</label>
-            <input type="text" name="amount" id="amount" />
+        <form autocomplete="off" method="post" action="includes/delete-account.php">
+            <label>What type of account do you want to DELETE?</label>
+            <select name="send" id="send">
+                <option value="select">Select Account</option>
+                <?php
+                while ($row = mysqli_fetch_assoc($accounts)) {
+                ?>
+                <option value=<?php echo $row['account_id']; ?>><?php echo $row['account_id']; ?></option>
+                <?php
+                }
+                ?>
+            </select>
             <input type="submit" id="btn" value="Submit"/>
         </form>
-
+        
     </div>
 </body>
 </html>
