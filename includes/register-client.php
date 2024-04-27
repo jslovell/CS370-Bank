@@ -41,14 +41,8 @@ $city = mysqli_real_escape_string($conn, $city);
 
 
 
-/*
-$stmt = $conn->prepare("SELECT username, password FROM client WHERE username=? and password=?");
-$stmt->bind_param("ss", $username, $password);
-$stmt->execute();
-$stmt->bind_result($username, $password);
-$stmt->store_result();
-*/
-//my test
+
+//This is seeing if there is any accounts that share the same username or email --> Already a Function in SQL TABLE
 $stmt = $conn->prepare("SELECT username, email FROM client WHERE username=? OR email=?");
 $stmt->bind_param("ss", $username, $email);
 $stmt->execute();
@@ -56,7 +50,6 @@ $stmt->execute();
 $stmt->bind_result($username, $email);
 $stmt->store_result();
 
-//$username, $password, $firstname, $lastname, $emailer, $phonenumber, $streetnumber
 
 if ($stmt->num_rows == 1 && $stmt->fetch()) {
 	$_SESSION['loginError'] = true;

@@ -25,6 +25,8 @@
         <a href="history.php">History</a>
         <a href="transfer.php">Transfer</a>
         <a href="?logout=true">Logout</a>
+
+        
     </div>
     <div class="wrapper"><div class="table">
         <table>
@@ -46,5 +48,10 @@
             ?>
         </table>
     </div></div>
+
+    <div class="nav">
+        <a href="add-client-account.php">Add Account?</a>
+        <a href="delete-client-account.php">Delete Accounts?</a>
+    </div>
 </body>
 </html>

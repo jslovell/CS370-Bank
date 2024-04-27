@@ -38,7 +38,7 @@ CREATE TABLE ticket (
 	timestamp		datetime,
 	PRIMARY KEY (ticket_id),
 	FOREIGN KEY (ticket_owner) REFERENCES client(username),
-	CHECK (priority>0 AND priority<=3)
+	CHECK (priority>0 AND priority<=9)
 );
 
 # Insert data into new tables

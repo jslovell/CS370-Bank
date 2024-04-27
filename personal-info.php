@@ -34,8 +34,8 @@
                 <td>Last Name</td>
                 <td>Email</td>
                 <td>Phone Number</td>
-                <td>Street</td>
                 <td>Street Number</td>
+                <td>Street</td>
                 <td>City</td>
             </tr>
             <tr>
@@ -47,8 +47,8 @@
                 <td><?php echo $row['l_name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['phone_num']; ?></td>
-                <td><?php echo $row['street']; ?></td>
                 <td><?php echo $row['street_num']; ?></td>
+                <td><?php echo $row['street']; ?></td>
                 <td><?php echo $row['city']; ?></td>
             </tr>
             <?php

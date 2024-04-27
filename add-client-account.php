@@ -5,7 +5,8 @@
     require_once('includes/db.php');
     require_once('includes/functions.php');
     if (!isset($_SESSION['user'])) header('Location: index.php');
-    if ($_SESSION['user'] != "admin") header('Location: client.php');
+    $user = $_SESSION['user'];
+    $accounts = getAccounts($user);
     if(isset($_GET['logout'])) {
         session_destroy();
         header('Location: index.php');
@@ -18,12 +19,21 @@
 <title>Very Legitimate Bank Inc.</title>
 </head>
 <body>
-    <h1>Admin Control Panel</h1>
-    <br>
+    <h1>What type of account do you want to add?</h1>
     <div class="nav">
-        <a href="admin-stuffs/AllUsers.php">Clients</a>
-        <a href="admin-stuffs/Tickets.php">Tickets</a>
+        <a href="client.php">Back</a>
         <a href="?logout=true">Logout</a>
+    </div>
+    <div class="frm">
+        <form autocomplete="off" method="post" action="includes/add-account.php">
+            <label>Account Type</label>
+            <input type="text" name="send" id="send" />
+
+            <label>Initial Balance</label>
+            <input type="text" name="amount" id="amount" />
+            <input type="submit" id="btn" value="Submit"/>
+        </form>
+
     </div>
 </body>
 </html>
