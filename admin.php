@@ -19,7 +19,6 @@
 </head>
 <body>
     <h1>Admin Control Panel</h1>
-    <br>
     <div class="nav">
         <a href="admin-stuffs/AllUsers.php">Clients</a>
         <a href="admin-stuffs/Tickets.php">Tickets</a>

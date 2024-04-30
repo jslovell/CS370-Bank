@@ -31,7 +31,7 @@
     <div class="wrapper"><div class="table">
         <table id="dataTable">
             <tr>
-                <?php echo "<td>Username <a onclick=\"sortTable('username')\">Username</a></td><td>F_NAME <a onclick=\"sortTable('f_name')\">f_name</a></td><td>L_NAME <a onclick=\"sortTable('l_name')\">l_name</a></td><td>EMAIL <a onclick=\"sortTable('email')\">email</a></td><td>PHONE_NUM <a onclick=\"sortTable('phone_num')\">phone_num</a></td><td>";?>
+                <?php echo "<td>Username <a onclick=\"sortTable('username')\">Sort</a></td><td>First Name <a onclick=\"sortTable('f_name')\">Sort</a></td><td>Last Name <a onclick=\"sortTable('l_name')\">Sort</a></td><td>Email <a onclick=\"sortTable('email')\">Sort</a></td><td>Phone Number <a onclick=\"sortTable('phone_num')\">Sort</a></td><td>";?>
             </tr>
             <tr>
                 <?php

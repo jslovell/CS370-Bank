@@ -32,14 +32,14 @@
     <div class="wrapper"><div class="table">
         <table id="dataTable">
             <tr>
-                <?php echo "<td>Ticket_ID <a onclick=\"sortTable('username')\">Username</a></td><td>Ticket_Owner <a onclick=\"sortTable('ticket_owner')\">ticker_owner</a></td><td>Priority <a onclick=\"sortTable('priority')\">priority</a></td><td>Description <a onclick=\"sortTable('description')\">description</a></td><td>Timestamp <a onclick=\"sortTable('timestamp')\">Timestamp</a></td><td>";?>
+                <?php echo "<td>Ticket ID <a onclick=\"sortTable('ticket_id')\">Sort</a></td><td>Ticket Owner <a onclick=\"sortTable('ticket_owner')\">Sort</a></td><td>Priority <a onclick=\"sortTable('priority')\">Sort</a></td><td>Description <a onclick=\"sortTable('description')\">Sort</a></td><td>Timestamp <a onclick=\"sortTable('timestamp')\">Sort</a></td><td>";?>
             </tr>
             <tr>
                 <?php
                 while($row = mysqli_fetch_assoc($persInfo)) {
                 ?>
                 <?php echo "<tr><td> <a href=\"../Ticket-Stuffs/handleTicketRequests.php?ticket=" . $row['ticket_id'] . "\">". $row['ticket_id'] ."</a></td><td>" . $row['ticket_owner'] . "</td><td>" . $row['priority'] . "</td><td>" . $row['description'] . "</td><td>" . $row['timestamp'] . "</td><td>";?>
-                
+
 
             </tr>
             <?php
@@ -60,7 +60,7 @@
                     document.getElementById("dataTable").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "filterUsersInTable.php?sort=" + column, true); //Need to Copy php files destination and modify it so it works for tickets
+            xhttp.open("GET", "filterTicketsInTable.php?sort=" + column, true); //Need to Copy php files destination and modify it so it works for tickets
             xhttp.send();
         }
         //Havent worked on sort functionality for Tickets or modified (WIP)
